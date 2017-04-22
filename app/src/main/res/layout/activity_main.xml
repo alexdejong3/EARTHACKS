@@ -29,13 +29,15 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Submit"/>
+        android:text="Submit"
+        android:onClick="startSubmitActivity"/>
     <Button
         android:id="@+id/button_results"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="Current Infections"/>
+        android:text="Current Infections"
+        android:onClick="startResultsActivity"/>
     <Button
         android:id="@+id/button_about"
         android:layout_width="match_parent"

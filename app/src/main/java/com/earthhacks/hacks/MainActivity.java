@@ -13,6 +13,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    public void startSubmitActivity(View view){
+        Intent intent = new Intent(this, SubmissionActivity.class);
+        startActivity(intent);
+    }
+
+    public void startResultsActivity(View view){
+        Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
+    }
+
     public void startAboutActivity(View view){
         Intent intent = new Intent(this, AboutActivity.class);
         startActivity(intent);
