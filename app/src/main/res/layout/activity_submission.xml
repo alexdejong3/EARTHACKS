@@ -9,5 +9,90 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.earthhacks.hacks.SubmissionActivity">
+    //
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:textSize="20sp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text= "@string/submission_title"
+        android:id="@+id/textView" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_sinus_pressure"
+        android:text = "@string/sy_sinus_pressure"
+        android:layout_below="@+id/sy_fatigue"
+        android:onClick="selectItem"
+        android:layout_alignStart="@+id/sy_fatigue" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_fatigue"
+        android:text = "@string/sy_fatigue"
+        android:layout_below="@+id/sy_lightheadedness"
+        android:onClick="selectItem"
+        android:layout_alignStart="@+id/sy_lightheadedness" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_lightheadedness"
+        android:text = "@string/sy_lightheadedness"
+        android:layout_below="@+id/sy_drowsiness"
+        android:onClick="selectItem"
+        android:layout_alignStart="@+id/sy_drowsiness" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_drowsiness"
+        android:text = "@string/sy_drowsiness"
+        android:layout_below="@+id/sy_red_eyes"
+        android:layout_alignStart="@+id/sy_red_eyes" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_red_eyes"
+        android:text = "@string/sy_red_eyes"
+        android:onClick="selectItem"
+        android:layout_below="@+id/sy_eye_irritation"
+        android:layout_alignStart="@+id/sy_eye_irritation" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/sy_eye_irritation"
+        android:text = "@string/sy_eye_irritation"
+        android:onClick="selectItem"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="54dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true" />
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/sy_lightheadedness"
+        android:layout_alignBottom="@+id/sy_lightheadedness"
+        android:layout_alignEnd="@+id/sy_fatigue" />
+        //android:id = "@+id/sy_watery_eyes"
+        android:id = "@+id/sy_headache"
+        android:text = "@string/sy_headache"
+        android:layout_marginTop="32dp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text = "@string/submit"
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/sy_sinus_pressure"
+        android:layout_toEndOf="@+id/sy_red_eyes"
+        android:onClick="processResults"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id = "@+id/final_result"
+        android:text="Nisreen Was Here"
+        />
 
 </RelativeLayout>
