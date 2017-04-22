@@ -15,7 +15,7 @@ public class SubmissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
-        final_text = (TextView)findViewById(R.id.final_result);
+        //final_text = (TextView)findViewById(R.id.final_result);
     }
     public void select_item(View v){
         boolean checked = ((CheckBox) v).isChecked();
