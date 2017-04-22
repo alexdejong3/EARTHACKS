@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 
 public class SubmissionActivity extends AppCompatActivity {
@@ -15,8 +17,8 @@ public class SubmissionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
-        //final_text = (TextView)findViewById(R.id.final_result);
     }
+
     public void selectItem(View v){
         boolean checked = ((CheckBox) v).isChecked();
         switch(v.getId()){
