@@ -15,6 +15,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 import org.jpaste.exceptions.PasteException;
+import org.jpaste.pastebin.PastebinLink;
 import org.jpaste.pastebin.account.PastebinAccount;
 import org.jpaste.pastebin.exceptions.LoginException;
 import org.jpaste.pastebin.exceptions.ParseException;
@@ -24,128 +25,199 @@ import java.util.Map;
 
 public class SubmissionActivity extends AppCompatActivity {
 
-    //@Override
     String data = "";
     String urlaccount = "http://pastebin.com/api/api_login.php";
-    String urlpaste = "http://pastebin.com/api/api_post.php";
+    String urlpost = "http://pastebin.com/api/api_post.php";
     String accountVerification = "";
+    String pasteKey = "";
+    String zipcode = "00000";
+    final PastebinAccount account = new PastebinAccount("f1f7b3194887c920b6ea2858ce6ac8d3", "alipervaiz", "earthhacks");
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
-        PastebinAccount account = new PastebinAccount("f1f7b3194887c920b6ea2858ce6ac8d3", "alipervaiz", "earthhacks");
+
+        // Gets user key
         StringRequest request = new StringRequest(Request.Method.POST, urlaccount,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         setNewString(response);
-                        Log.d("FUCCKER",response);
+                        Log.d("OUTPUT", response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("FUCKER", error.toString());
+                Log.e("ERROR", error.toString());
             }
         }
-        ){
+        ) {
             @Override
-            protected Map<String,String> getParams(){
+            protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("api_dev_key", "f1f7b3194887c920b6ea2858ce6ac8d3");
-                //params.put("api_option","paste");
-                //params.put("api_paste_code","FUCK YOU");
-                params.put("api_user_name","alipervaiz");
-                params.put("api_user_password","earthhacks");
-
+                params.put("api_dev_key", account.getDeveloperKey());
+                params.put("api_user_name", account.getUsername());
+                params.put("api_user_password", account.getPassword());
                 return params;
             }
         };
         ApplicationController.getInstance().addToRequestQueue(request);
     }
 
-    public void selectItem(View v){
+    public void selectItem(View v) {
         data = "";
-        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.checkbox_layout);
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.checkbox_layout);
         int children = linearLayout.getChildCount();
-        for(int i = 0;i<children;i++){
-            CheckBox c = (CheckBox)linearLayout.getChildAt(i);
-            if(c.isChecked())
-                data+="1";
+        for (int i = 0; i < children; i++) {
+            CheckBox c = (CheckBox) linearLayout.getChildAt(i);
+            if (c.isChecked())
+                data += "1";
             else
-                data+="0";
+                data += "0";
         }
-        Log.d("TEST",data);
+        Log.d("TEST", data);
     }
 
-    public void processResults(View v) throws PasteException, LoginException,ParseException {
+    public void processResults(View v) throws PasteException, LoginException, ParseException {
         EditText editText = (EditText) findViewById(R.id.edit_text_zipcode);
         String s = editText.getText().toString();
-        if(isZipcode(s)){
+        if (isZipcode(s)) {
+            zipcode = s;
 
-            StringRequest paste = new StringRequest(Request.Method.POST, urlpaste,
+            // Gets the paste data
+            StringRequest pasteRequest = new StringRequest(Request.Method.POST, urlpost,
                     new Response.Listener<String>() {
-                        @Override
+                            @Override
                         public void onResponse(String response) {
-                            Log.d("FUCKER", response);
+                            Log.d("DATA", accountVerification);
+                            Log.d("DATA",response);
+                                getKeyFromData(response);
+                                getDatafromPaste();
                         }
                     }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    Log.e("FUCKER", error.toString());
+                    Log.e("ERROR",error.toString());
                 }
-            }
-            ){
+            }){
                 @Override
-                protected Map<String,String> getParams(){
+                protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
-                    params.put("api_dev_key", "f1f7b3194887c920b6ea2858ce6ac8d3");
-                    params.put("api_option","paste");
-                    params.put("api_paste_code","FUCK YOU");
+                    params.put("api_dev_key", account.getDeveloperKey());
+                    params.put("api_option", "list");
+                    params.put("api_results_limit","1");
                     params.put("api_user_key", accountVerification);
-                    //params.put("api_user_name","alipervaiz");
-                    //params.put("api_user_password","earthhacks");
 
                     return params;
                 }
             };
-            ApplicationController.getInstance().addToRequestQueue(paste);
-
-            /*PastebinLink[] pastes = account.getPastes();
-            PastebinLink recent = pastes[0];
-            recent.fetchContent();
-            contents = recent.getPaste().getContents();
-            //edit this
-            String bits = "";
-            String zip = "";
-            // create paste
-            PastebinPaste paste = new PastebinPaste(account);
-            paste.setContents(bits + "\n" + zip + "\n" + contents);
-            paste.setPasteTitle("private info");
-
-            // push paste
-            PastebinLink link = paste.paste();
-            System.out.println(link.getLink());
-
-            //Deleting old data
-            for(int i = 0; i < pastes.length; i++)
-            {
-                PastebinLink bin = pastes[i];
-                bin.delete();
-            }*/
-
+            ApplicationController.getInstance().addToRequestQueue(pasteRequest);
             finish();
-        }
-        else {
+        } else {
             editText.setText("");
             Toast.makeText(this, "Invalid Zipcode", Toast.LENGTH_SHORT).show();
         }
     }
 
-    private boolean isZipcode(String s){
+    private boolean isZipcode(String s) {
         return s.matches("[0-9]{5}");
     }
 
-    void setNewString(String response){
+    void setNewString(String response) {
         accountVerification = response;
+    }
+
+    void pasteToServer(final String pasteData){
+        StringRequest paste = new StringRequest(Request.Method.POST, urlpost,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("OUTPUT", response);
+                        deletePaste();
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("OUTPUT", error.toString());
+            }
+        }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("api_dev_key", account.getDeveloperKey());
+                params.put("api_option", "paste");
+                params.put("api_paste_code", pasteData);
+                params.put("api_user_key", accountVerification);
+
+                return params;
+            }
+        };
+        ApplicationController.getInstance().addToRequestQueue(paste);
+    }
+
+    void getDatafromPaste(){
+        StringRequest paste = new StringRequest(Request.Method.GET, "https://pastebin.com/raw/" + pasteKey,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("OUTPUT", response);
+                        pasteToServer(getNewData(response));
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("OUTPUT", error.toString());
+            }
+        }
+        );
+        ApplicationController.getInstance().addToRequestQueue(paste);
+    }
+
+    void getKeyFromData(String result){
+        int index = result.indexOf("<paste_key>") + "<paste_key>".length();
+        String s = "";
+        while(result.charAt(index) != '<'){
+            s+=result.charAt(index++);
+        }
+        pasteKey = s;
+        Log.d("TEST",pasteKey);
+    }
+    String getNewData(String response){
+        return makePasteEntry() + response;
+    }
+
+    String makePasteEntry(){
+        return data + "\n" + zipcode + "\n";
+    }
+
+    void deletePaste(){
+        StringRequest paste = new StringRequest(Request.Method.POST, urlpost,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d("OUTPUT", response);
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("OUTPUT", error.toString());
+            }
+        }
+        ){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
+                params.put("api_dev_key", account.getDeveloperKey());
+                params.put("api_option", "delete");
+                params.put("api_user_key", accountVerification);
+                params.put("api_paste_key",pasteKey);
+
+                return params;
+            }
+        };
+        ApplicationController.getInstance().addToRequestQueue(paste);
     }
 }
