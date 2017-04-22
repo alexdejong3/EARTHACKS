@@ -17,7 +17,7 @@ public class SubmissionActivity extends AppCompatActivity {
         setContentView(R.layout.activity_submission);
         //final_text = (TextView)findViewById(R.id.final_result);
     }
-    public void select_item(View v){
+    public void selectItem(View v){
         boolean checked = ((CheckBox) v).isChecked();
         switch(v.getId()){
             case R.id.sy_fatigue:
