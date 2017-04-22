@@ -14,6 +14,7 @@ public class SubmissionActivity extends AppCompatActivity {
 
     //@Override
     ArrayList<String> symptoms = new ArrayList<>();
+    String data = "";
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
@@ -52,7 +53,67 @@ public class SubmissionActivity extends AppCompatActivity {
                 else
                     symptoms.remove("Sinus Pressure");
                 break;
+            case R.id.sy_headache:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_fever:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_vomiting:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_sneezing:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_coughing:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_dizziness:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_nausea:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_chills:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
             case R.id.sy_red_eyes:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_runny_nose:
+                if(checked)
+                    symptoms.add("Red Eyes");
+                else
+                    symptoms.remove("Red Eyes");
+                break;
+            case R.id.sy_nasal_congestion:
                 if(checked)
                     symptoms.add("Red Eyes");
                 else
