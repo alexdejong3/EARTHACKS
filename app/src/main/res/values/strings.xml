@@ -1,17 +1,6 @@
 <resources>
     <string name="app_name">HACKS</string>
     <string name="submission_title">SYMPTOMS YOU  HAVE ENCOUNTERED</string>
-    <string name="sy_headache">Headache</string>
-    <string name="sy_fatigue">Fatigue</string>
-    <string name="sy_lightheadedness">Lightheadedness</string>
-    <string name="sy_drowsiness">Drowsiness</string>
-    <string name="sy_eye_irritation">Eye Irritation</string>
-    <string name="sy_watery_eyes">Watery Eyes</string>
-    <string name="sy_sinus_pressure">Sinus Pressure</string>
-    <string name="sy_difficulty_breathing">Difficulty Breathing</string>
-    <string name="sy_red_eyes">Red Eyes</string>
-    <string name="submit">Submit</string>
-
 
 
 </resources>

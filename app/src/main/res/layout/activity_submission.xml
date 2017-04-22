@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_submission"
     android:layout_width="match_parent"
@@ -10,72 +10,144 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.earthhacks.hacks.SubmissionActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="20sp"
-        android:textAppearance="?android:textAppearanceLarge"
-        android:text= "@string/submission_title"
-        android:id="@+id/textView" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_sinus_pressure"
-        android:text = "@string/sy_sinus_pressure"
-        android:layout_below="@+id/sy_fatigue"
-        android:onClick="selectItem"
-        android:layout_alignStart="@+id/sy_fatigue" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_fatigue"
-        android:text = "@string/sy_fatigue"
-        android:layout_below="@+id/sy_lightheadedness"
-        android:onClick="selectItem"
-        android:layout_alignStart="@+id/sy_lightheadedness" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_lightheadedness"
-        android:text = "@string/sy_lightheadedness"
-        android:layout_below="@+id/sy_drowsiness"
-        android:onClick="selectItem"
-        android:layout_alignStart="@+id/sy_drowsiness" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_drowsiness"
-        android:text = "@string/sy_drowsiness"
-        android:layout_below="@+id/sy_red_eyes"
-        android:layout_alignStart="@+id/sy_red_eyes" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_red_eyes"
-        android:text = "@string/sy_red_eyes"
-        android:onClick="selectItem"
-        android:layout_below="@+id/sy_eye_irritation"
-        android:layout_alignStart="@+id/sy_eye_irritation" />
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id = "@+id/sy_eye_irritation"
-        android:text = "@string/sy_eye_irritation"
-        android:onClick="selectItem"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="54dp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentStart="true" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:text = "@string/submit"
-        android:layout_marginTop="37dp"
-        android:layout_below="@+id/sy_sinus_pressure"
-        android:layout_toEndOf="@+id/sy_red_eyes"
-        android:onClick="processResults"
-        />
+        <TextView
+            android:id="@+id/textView_submission_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/submission_title"
+            android:textSize="20sp" />
 
-</RelativeLayout>
+        <LinearLayout
+            android:id="@+id/checkbox_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textView_submission_title"
+            android:orientation="vertical">
+
+            <CheckBox
+                android:id="@+id/sy_sinus_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Sinus Pressure" />
+
+            <CheckBox
+                android:id="@+id/sy_fatigue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Fatigue" />
+
+            <CheckBox
+                android:id="@+id/sy_lightheadedness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Lightheadedness" />
+
+            <CheckBox
+                android:id="@+id/sy_drowsiness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Drowsiness" />
+
+            <CheckBox
+                android:id="@+id/sy_red_eyes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Red Eyes" />
+
+            <CheckBox
+                android:id="@+id/sy_eye_irritation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Eye Irritation" />
+
+            <CheckBox
+                android:id="@+id/sy_headache"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Headache" />
+
+            <CheckBox
+                android:id="@+id/sy_fever"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Fever" />
+
+            <CheckBox
+                android:id="@+id/sy_vomiting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Vomiting" />
+
+            <CheckBox
+                android:id="@+id/sy_sneezing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Sneezing" />
+
+            <CheckBox
+                android:id="@+id/sy_coughing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Coughing" />
+
+            <CheckBox
+                android:id="@+id/sy_dizziness"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Dizziness" />
+
+            <CheckBox
+                android:id="@+id/sy_nausea"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Nausea" />
+
+            <CheckBox
+                android:id="@+id/sy_chills"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Chills" />
+
+            <CheckBox
+                android:id="@+id/sy_runny_nose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Runny Nose" />
+
+            <CheckBox
+                android:id="@+id/sy_nasal_congestion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="selectItem"
+                android:text="Nasal Congestion" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/checkbox_layout"
+            android:onClick="processResults"
+            android:text="Submit" />
+    </RelativeLayout>
+
+</ScrollView>
