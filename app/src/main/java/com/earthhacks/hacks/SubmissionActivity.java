@@ -1,5 +1,6 @@
 package com.earthhacks.hacks;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutCompat;
@@ -37,6 +38,7 @@ public class SubmissionActivity extends AppCompatActivity {
         Log.d("TEST",data);
     }
     public void processResults(View v){
-
+        Intent intent = new Intent(this, ResultsActivity.class);
+        startActivity(intent);
     }
 }
