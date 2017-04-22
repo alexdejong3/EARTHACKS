@@ -6,8 +6,10 @@ import android.support.v7.widget.LinearLayoutCompat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.net.URL;
 import java.net.URLConnection;
@@ -37,6 +39,19 @@ public class SubmissionActivity extends AppCompatActivity {
         Log.d("TEST",data);
     }
     public void processResults(View v){
+        EditText editText = (EditText) findViewById(R.id.edit_text_zipcode);
+        String s = editText.getText().toString();
+        if(isZipcode(s)){
+            // Submit to pastebin
+            finish();
+        }
+        else {
+            editText.setText("");
+            Toast.makeText(this, "Invalid Zipcode", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    private boolean isZipcode(String s){
+        return s.matches("[0-9]{5}");
     }
 }

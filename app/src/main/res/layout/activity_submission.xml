@@ -153,6 +153,7 @@
                 android:text="Zip Code" />
 
             <EditText
+                android:id="@+id/edit_text_zipcode"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
