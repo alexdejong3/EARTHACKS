@@ -31,9 +31,9 @@ public class Web {
 			URL url = new URL(link);
 
 			URLConnection connection = url.openConnection();
-
 			if(post != null) {
 				connection.setDoOutput(true);
+				url.openConnection();
 				OutputStreamWriter wr = new OutputStreamWriter(
 						connection.getOutputStream());
 				wr.write(post.getPost());
