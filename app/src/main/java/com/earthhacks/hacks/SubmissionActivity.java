@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class SubmissionActivity extends AppCompatActivity {
 
-    @Override
+    //@Override
     ArrayList<String> symptoms = new ArrayList<>();
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
