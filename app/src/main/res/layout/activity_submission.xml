@@ -10,9 +10,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.earthhacks.hacks.SubmissionActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView_submission_title"
@@ -142,12 +143,26 @@
                 android:text="Nasal Congestion" />
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Zip Code" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
         <Button
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/checkbox_layout"
             android:onClick="processResults"
             android:text="Submit" />
-    </RelativeLayout>
+    </LinearLayout>
 
 </ScrollView>

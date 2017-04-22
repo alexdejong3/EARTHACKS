@@ -2,8 +2,11 @@ package com.earthhacks.hacks;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutCompat;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.net.URL;
@@ -21,105 +24,17 @@ public class SubmissionActivity extends AppCompatActivity {
     }
 
     public void selectItem(View v){
-        boolean checked = ((CheckBox) v).isChecked();
-        switch(v.getId()){
-            case R.id.sy_fatigue:
-                if(checked)
-                    symptoms.add("Fatigue");
-                else
-                    symptoms.remove("Fatigue");
-                break;
-            case R.id.sy_lightheadedness:
-                if(checked)
-                    symptoms.add("Lightheadedness");
-                else
-                    symptoms.remove("Lightheadedness");
-                break;
-            case R.id.sy_drowsiness:
-                if(checked)
-                    symptoms.add("Drowsiness");
-                else
-                    symptoms.remove("Drowsiness");
-                break;
-            case R.id.sy_eye_irritation:
-                if(checked)
-                    symptoms.add("Eye Irritation");
-                else
-                    symptoms.remove("Eye Irritation");
-                break;
-            case R.id.sy_sinus_pressure:
-                if(checked)
-                    symptoms.add("Sinus Pressure");
-                else
-                    symptoms.remove("Sinus Pressure");
-                break;
-            case R.id.sy_headache:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_fever:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_vomiting:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_sneezing:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_coughing:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_dizziness:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_nausea:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_chills:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_red_eyes:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_runny_nose:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
-            case R.id.sy_nasal_congestion:
-                if(checked)
-                    symptoms.add("Red Eyes");
-                else
-                    symptoms.remove("Red Eyes");
-                break;
+        data = "";
+        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.checkbox_layout);
+        int children = linearLayout.getChildCount();
+        for(int i = 0;i<children;i++){
+            CheckBox c = (CheckBox)linearLayout.getChildAt(i);
+            if(c.isChecked())
+                data+="1";
+            else
+                data+="0";
         }
+        Log.d("TEST",data);
     }
     public void processResults(View v){
 
