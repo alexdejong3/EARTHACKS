@@ -31,7 +31,9 @@
         android:layout_weight="1"
         android:textSize="25dp"
         android:text="Submit"
-        android:onClick="startSubmitActivity"/>
+        android:onClick="startSubmitActivity"
+        android:background="@drawable/buttonshape"
+        android:layout_marginBottom="5dp"/>
     <Button
         android:id="@+id/button_results"
         android:layout_width="match_parent"
@@ -39,7 +41,10 @@
         android:layout_weight="1"
         android:textSize="25dp"
         android:text="Current Infections"
-        android:onClick="startResultsActivity"/>
+        android:onClick="startResultsActivity"
+        android:background="@drawable/buttonshape"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"/>
     <Button
         android:id="@+id/button_about"
         android:layout_width="match_parent"
@@ -48,5 +53,7 @@
         android:textSize="25dp"
         android:text="About"
         android:onClick="startAboutActivity"
+        android:background="@drawable/buttonshape"
+        android:layout_marginTop="5dp"
         />
 </LinearLayout>
