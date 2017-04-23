@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class SubmissionActivity extends AppCompatActivity {
 
-    String data = "";
+    String data = "0000000000000000";
     String urlaccount = "http://pastebin.com/api/api_login.php";
     String urlpost = "http://pastebin.com/api/api_post.php";
     String accountVerification = "";

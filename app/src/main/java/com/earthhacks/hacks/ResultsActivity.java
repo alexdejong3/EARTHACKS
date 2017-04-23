@@ -52,7 +52,7 @@ public class ResultsActivity extends AppCompatActivity {
         };
         ApplicationController.getInstance().addToRequestQueue(request);
     }
-    /*void getDatafromPaste(){
+    void getDatafromPaste(){
         StringRequest paste = new StringRequest(Request.Method.GET, "https://pastebin.com/raw/" + pasteKey,
                 new Response.Listener<String>() {
                     @Override
@@ -111,5 +111,5 @@ public class ResultsActivity extends AppCompatActivity {
     }
     void setNewString(String response) {
         accountVerification = response;
-    }*/
+    }
 }
