@@ -16,7 +16,7 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@mipmap/ic_launcher"
+        android:src="@mipmap/trans"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6.5"
