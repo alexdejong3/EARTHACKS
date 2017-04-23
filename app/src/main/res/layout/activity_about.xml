@@ -18,7 +18,7 @@
         android:textSize="30dp"
         android:text="ABOUT"
         android:textAlignment="center"
-        android:layout_marginBottom="20dp"/>
+        android:layout_marginBottom="0dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -27,8 +27,15 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Symptly Aware was created for the purpose of reporting statistics regarding symptoms for healthcare professionals. The app DOES NOT diagnose illnesses and SHOULD NOT replace the advice of a healthcare professional. If you are experiencing any of the app’s listed symptoms, seek immediate medical attention."
+            android:textAlignment="center"
+            android:text="Symptly Aware "
             android:textSize="20dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Disclaimer:\n\nSymptly Aware was created for the purpose of reporting statistics regarding symptoms for healthcare professionals. The app DOES NOT diagnose illnesses and SHOULD NOT replace the advice of a healthcare professional. If you are experiencing any of the app’s listed symptoms, seek immediate medical attention."
+            android:textSize="20dp"
+            android:textAlignment="center"/>
     </ScrollView>
 
 </LinearLayout>
