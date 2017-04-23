@@ -13,6 +13,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Data.retrieveData();
+    }
+
     public void startSubmitActivity(View view){
         Intent intent = new Intent(this, SubmissionActivity.class);
         startActivity(intent);

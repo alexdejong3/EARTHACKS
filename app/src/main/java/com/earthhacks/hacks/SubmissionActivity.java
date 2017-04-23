@@ -40,31 +40,6 @@ public class SubmissionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
 
-        // Gets user key
-        /*StringRequest request = new StringRequest(Request.Method.POST, urlaccount,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        setNewString(response);
-                        Log.d("OUTPUT", response);
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("ERROR", error.toString());
-            }
-        }
-        ) {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> params = new HashMap<>();
-                params.put("api_dev_key", account.getDeveloperKey());
-                params.put("api_user_name", account.getUsername());
-                params.put("api_user_password", account.getPassword());
-                return params;
-            }
-        };
-        ApplicationController.getInstance().addToRequestQueue(request);*/
     }
 
     public void selectItem(View v) {
@@ -86,38 +61,43 @@ public class SubmissionActivity extends AppCompatActivity {
         String s = editText.getText().toString();
         timeStamp = new SimpleDateFormat("MM.dd.yyyy").format(new java.util.Date());
         if (isZipcode(s)) {
-            zipcode = s;
+            if(data.contains("1")) {
+                zipcode = s;
 
-            // Gets the paste data
-            StringRequest pasteRequest = new StringRequest(Request.Method.POST, urlpost,
-                    new Response.Listener<String>() {
+                // Gets the paste data
+                StringRequest pasteRequest = new StringRequest(Request.Method.POST, urlpost,
+                        new Response.Listener<String>() {
                             @Override
-                        public void onResponse(String response) {
-                            Log.d("DATA", accountVerification);
-                            Log.d("DATA",response);
+                            public void onResponse(String response) {
+                                Log.d("DATA", accountVerification);
+                                Log.d("DATA", response);
                                 getKeyFromData(response);
                                 getDatafromPaste();
-                        }
-                    }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    Log.e("ERROR",error.toString());
-                }
-            }){
-                @Override
-                protected Map<String, String> getParams() {
-                    Map<String, String> params = new HashMap<>();
-                    params.put("api_dev_key", account.getDeveloperKey());
-                    params.put("api_option", "list");
-                    params.put("api_results_limit","1");
-                    params.put("api_user_key", accountVerification);
+                            }
+                        }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Log.e("ERROR", error.toString());
+                    }
+                }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        Map<String, String> params = new HashMap<>();
+                        params.put("api_dev_key", account.getDeveloperKey());
+                        params.put("api_option", "list");
+                        params.put("api_results_limit", "1");
+                        params.put("api_user_key", accountVerification);
 
-                    return params;
-                }
-            };
-            ApplicationController.getInstance().addToRequestQueue(pasteRequest);
-            Toast.makeText(this, "Thank you for your input", Toast.LENGTH_SHORT).show();
-            finish();
+                        return params;
+                    }
+                };
+                ApplicationController.getInstance().addToRequestQueue(pasteRequest);
+                Toast.makeText(this, "Thank you for your input", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else{
+                Toast.makeText(this,"Please Enter Symptoms",Toast.LENGTH_SHORT).show();
+            }
         } else {
             editText.setText("");
             Toast.makeText(this, "Invalid Zipcode", Toast.LENGTH_SHORT).show();
@@ -169,6 +149,7 @@ public class SubmissionActivity extends AppCompatActivity {
                     public void onResponse(String response) {
                         Log.d("OUTPUT", response);
                         pasteToServer(getNewData(response));
+                        Data.setData(response);
 
                     }
                 }, new Response.ErrorListener() {
