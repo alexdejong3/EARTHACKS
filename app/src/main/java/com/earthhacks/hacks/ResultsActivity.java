@@ -169,6 +169,8 @@ public class ResultsActivity extends AppCompatActivity {
         pieChart.invalidate();
         pieChart.setTouchEnabled(false);
         pieChart.setUsePercentValues(true);
+        pieChart.setDescription("");    // Hide the description
+        pieChart.getLegend().setEnabled(false);   // Hide the legend
     }
     void compileData(){
         Scanner scan = new Scanner(data);

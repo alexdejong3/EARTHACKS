@@ -11,22 +11,11 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:fillViewport="true"
     tools:context="com.earthhacks.hacks.ResultsActivity">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <com.github.mikephil.charting.charts.PieChart
-            android:background="@color/colorAccent"
             android:id="@+id/pie_chart"
             android:layout_height="match_parent"
             android:layout_width="match_parent"
             />
-
-
-
-    </LinearLayout>
-
-
 
 </ScrollView>
