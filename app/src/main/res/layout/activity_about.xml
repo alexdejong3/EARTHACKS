@@ -22,7 +22,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="\tPut the text the explains the app here, and also Alex is pretty cool."
+        android:text="\tSymptly Aware was created for everyone, regardless of whether you’re tech savvy or not. First, select the symptoms that you are currently experiencing. The list of symptoms are not meant to diagnose illness, but is used instead to help medical professionals anticipate future cases that may follow. The data from the app can be used for hospitals to better prepare hospital beds and supplies. App that notifies you of disease outbreaks near you. Allows users to report their symptoms and check to see what symptoms people are experiencing in the local area. Hospitals and hospital systems can use the data from this app to prepare for epidemics or anticipate disease characteristics in a population."
         android:textSize="20dp"/>
 
 </LinearLayout>
