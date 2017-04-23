@@ -16,14 +16,13 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:src="@mipmap/trans"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="6.5"
-        android:paddingBottom="150dp"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        />
+        android:paddingBottom="120dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:src="@mipmap/trans" />
 
     <Button
         android:id="@+id/button_submission"
