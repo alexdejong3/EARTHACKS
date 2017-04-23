@@ -184,7 +184,7 @@ public class SubmissionActivity extends AppCompatActivity {
     void getKeyFromData(String result){
         int index = result.indexOf("<paste_key>") + "<paste_key>".length();
         String s = "";
-        while(result.charAt(index) != '<'){
+        while(index < result.length() && result.charAt(index) != '<'){
             s+=result.charAt(index++);
         }
         pasteKey = s;
