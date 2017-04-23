@@ -21,6 +21,7 @@ import org.jpaste.pastebin.account.PastebinAccount;
 import org.jpaste.pastebin.exceptions.LoginException;
 import org.jpaste.pastebin.exceptions.ParseException;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,6 +33,7 @@ public class SubmissionActivity extends AppCompatActivity {
     String accountVerification = "";
     String pasteKey = "";
     String zipcode = "00000";
+    String timeStamp = "";
     final PastebinAccount account = new PastebinAccount("f1f7b3194887c920b6ea2858ce6ac8d3", "alipervaiz", "earthhacks");
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +84,7 @@ public class SubmissionActivity extends AppCompatActivity {
     public void processResults(View v) throws PasteException, LoginException, ParseException {
         EditText editText = (EditText) findViewById(R.id.edit_text_zipcode);
         String s = editText.getText().toString();
+        timeStamp = new SimpleDateFormat("MM.dd.yyyy").format(new java.util.Date());
         if (isZipcode(s)) {
             zipcode = s;
 
@@ -113,6 +116,7 @@ public class SubmissionActivity extends AppCompatActivity {
                 }
             };
             ApplicationController.getInstance().addToRequestQueue(pasteRequest);
+            Toast.makeText(this, "Thank you for your input", Toast.LENGTH_SHORT).show();
             finish();
         } else {
             editText.setText("");
@@ -191,7 +195,7 @@ public class SubmissionActivity extends AppCompatActivity {
     }
 
     String makePasteEntry(){
-        return data + "\n" + zipcode + "\n";
+        return data + "\n" + zipcode + "\n" + timeStamp + "\n";
     }
 
     void deletePaste(){
