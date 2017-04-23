@@ -21,6 +21,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
+            android:layout_gravity="center_horizontal"
             android:text="@string/submission_title"
             android:textSize="20sp" />
 
@@ -160,11 +161,14 @@
         </LinearLayout>
 
         <Button
+            android:layout_gravity="center"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/checkbox_layout"
             android:onClick="processResults"
-            android:text="Submit" />
+            android:text="Submit"
+            android:background="@drawable/buttonshape"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 </ScrollView>
