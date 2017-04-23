@@ -30,18 +30,18 @@ public class SubmissionActivity extends AppCompatActivity {
     String data = "0000000000000000";
     String urlaccount = "http://pastebin.com/api/api_login.php";
     String urlpost = "http://pastebin.com/api/api_post.php";
-    String accountVerification = "";
+    String accountVerification = "5b0c7820f90de35c8ef6a361a697edf2";
     String pasteKey = "";
     String zipcode = "00000";
     String timeStamp = "";
-    final PastebinAccount account = new PastebinAccount("f1f7b3194887c920b6ea2858ce6ac8d3", "alipervaiz", "earthhacks");
+    final PastebinAccount account = new PastebinAccount("0c74dc3b025e92ece303a8d5ece9a0b9", "alipervaiz3", "M7kLm49M");
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
 
         // Gets user key
-        StringRequest request = new StringRequest(Request.Method.POST, urlaccount,
+        /*StringRequest request = new StringRequest(Request.Method.POST, urlaccount,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -64,7 +64,7 @@ public class SubmissionActivity extends AppCompatActivity {
                 return params;
             }
         };
-        ApplicationController.getInstance().addToRequestQueue(request);
+        ApplicationController.getInstance().addToRequestQueue(request);*/
     }
 
     public void selectItem(View v) {
