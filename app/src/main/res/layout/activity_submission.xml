@@ -152,7 +152,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Zip Code" />
+                android:text="Zip Code: " />
 
             <EditText
                 android:id="@+id/edit_text_zipcode"
