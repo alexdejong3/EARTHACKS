@@ -1,4 +1,4 @@
-# EARTHACKS
+# EARTHACKS 2017 Symptly Aware
 ## Inspiration
 
 Symptly Aware was inspired by the damage that illnesses can have in disturbing our everyday lives, and by the general lack of knowledge on the spread of diseases.
