@@ -1,6 +1,5 @@
 package com.earthhacks.hacks;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,33 +14,36 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
-import org.jpaste.exceptions.PasteException;
-import org.jpaste.pastebin.PastebinLink;
 import org.jpaste.pastebin.account.PastebinAccount;
-import org.jpaste.pastebin.exceptions.LoginException;
-import org.jpaste.pastebin.exceptions.ParseException;
 
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class SubmissionActivity extends AppCompatActivity {
 
-    String data = "0000000000000000";
-    String urlaccount = "http://pastebin.com/api/api_login.php";
-    String urlpost = "http://pastebin.com/api/api_post.php";
-    String accountVerification = "5b0c7820f90de35c8ef6a361a697edf2";
-    String pasteKey = "";
-    String zipcode = "00000";
-    String timeStamp = "";
-    final PastebinAccount account = new PastebinAccount("0c74dc3b025e92ece303a8d5ece9a0b9", "alipervaiz3", "M7kLm49M");
+    private String data = "0000000000000000";
+    private static final String urlpost = Data.getPostURL();
+    private static final String accountVerification = Data.getUserSessionKey();
+    private final PastebinAccount account = Data.getAccount();
+
+    private String timeStamp = "";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submission);
-
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    /*
+    Creates a bitstring based on if symptoms are checked or unchecked
+    A 1 means you are experiencing that symptom, and a 0 means you aren't
+     */
     public void selectItem(View v) {
         data = "";
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.checkbox_layout);
@@ -56,42 +58,14 @@ public class SubmissionActivity extends AppCompatActivity {
         Log.d("TEST", data);
     }
 
-    public void processResults(View v) throws PasteException, LoginException, ParseException {
+    public void processResults(View v) {
         EditText editText = (EditText) findViewById(R.id.edit_text_zipcode);
-        String s = editText.getText().toString();
-        timeStamp = new SimpleDateFormat("MM.dd.yyyy").format(new java.util.Date());
-        if (isZipcode(s)) {
+        String zipcode = editText.getText().toString();
+        timeStamp = new SimpleDateFormat("MM.dd.yyyy", Locale.US).format(new java.util.Date());
+        if (isZipcode(zipcode)) {
             if(data.contains("1")) {
-                zipcode = s;
 
-                // Gets the paste data
-                StringRequest pasteRequest = new StringRequest(Request.Method.POST, urlpost,
-                        new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                Log.d("DATA", accountVerification);
-                                Log.d("DATA", response);
-                                getKeyFromData(response);
-                                getDatafromPaste();
-                            }
-                        }, new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Log.e("ERROR", error.toString());
-                    }
-                }) {
-                    @Override
-                    protected Map<String, String> getParams() {
-                        Map<String, String> params = new HashMap<>();
-                        params.put("api_dev_key", account.getDeveloperKey());
-                        params.put("api_option", "list");
-                        params.put("api_results_limit", "1");
-                        params.put("api_user_key", accountVerification);
-
-                        return params;
-                    }
-                };
-                ApplicationController.getInstance().addToRequestQueue(pasteRequest);
+                pasteToServer(getNewData(zipcode));
                 Toast.makeText(this, "Thank you for your input", Toast.LENGTH_SHORT).show();
                 finish();
             }
@@ -106,10 +80,6 @@ public class SubmissionActivity extends AppCompatActivity {
 
     private boolean isZipcode(String s) {
         return s.matches("[0-9]{5}");
-    }
-
-    void setNewString(String response) {
-        accountVerification = response;
     }
 
     void pasteToServer(final String pasteData){
@@ -142,64 +112,45 @@ public class SubmissionActivity extends AppCompatActivity {
         ApplicationController.getInstance().addToRequestQueue(paste);
     }
 
-    void getDatafromPaste(){
-        StringRequest paste = new StringRequest(Request.Method.GET, "https://pastebin.com/raw/" + pasteKey,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Log.d("OUTPUT", response);
-                        pasteToServer(getNewData(response));
-                        Data.setData(response);
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Log.e("OUTPUT", error.toString());
-            }
-        }
-        );
-        ApplicationController.getInstance().addToRequestQueue(paste);
+    /*
+    Returns the full data for the paste
+     */
+    String getNewData(String zipcode){
+        return makePasteEntry(zipcode) + Data.getData();
     }
 
-    void getKeyFromData(String result){
-        int index = result.indexOf("<paste_key>") + "<paste_key>".length();
-        String s = "";
-        while(index < result.length() && result.charAt(index) != '<'){
-            s+=result.charAt(index++);
-        }
-        pasteKey = s;
-        Log.d("TEST",pasteKey);
-    }
-    String getNewData(String response){
-        return makePasteEntry() + response;
-    }
-
-    String makePasteEntry(){
+    /*
+    Creates the new paste addition to the previous data
+     */
+    String makePasteEntry(String zipcode){
         return data + "\n" + zipcode + "\n" + timeStamp + "\n";
     }
 
+
+    /*
+    Deletes the previous paste after the new one has been created
+     */
     void deletePaste(){
         StringRequest paste = new StringRequest(Request.Method.POST, urlpost,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("OUTPUT", response);
+                        Log.d("DELETE_STATUS", response);
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("OUTPUT", error.toString());
+                Log.e("ERROR", error.toString());
             }
         }
         ){
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<>();
-                params.put("api_dev_key", account.getDeveloperKey());
+                params.put("api_dev_key", Data.getAccount().getDeveloperKey());
                 params.put("api_option", "delete");
-                params.put("api_user_key", accountVerification);
-                params.put("api_paste_key",pasteKey);
+                params.put("api_user_key", Data.getUserSessionKey());
+                params.put("api_paste_key",Data.getPasteKey());
 
                 return params;
             }
