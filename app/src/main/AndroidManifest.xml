@@ -36,7 +36,7 @@
         </activity>
         <activity android:name=".SubmissionActivity" />
         <activity android:name=".AboutActivity" />
-        <activity android:name=".ResultsActivity"></activity>
+        <activity android:name=".ResultsActivity"/>
     </application>
 
 </manifest>
