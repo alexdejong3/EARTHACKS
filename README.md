@@ -22,4 +22,4 @@ We learned that persistence and dedication have the ability to overcome even the
 We plan to release our app onto the app store, and hopefully watch its user base grow. We also hope that with the knowledge that this app gives the user, people can be more aware and alert of the diseases and illnesses that are spreading around their area.
 
 ## Contributors
-Jess DeJong ([jess843](https://github.com/jess843)), Alex DeJong ([SinisterParadox](https://github.com/SinisterParadox)), Syed Pervaiz ([AliPervaiz](https://github.com/AliPervaiz)), Trenton ([F4llenPotAto](https://github.com/F4llenPotAto)), Sandra Nguyen ([snu12](https://github.com/snu12)), Nisreen ([pewnocolypse](https://github.com/pewnocolypse))
+Jess DeJong ([jessdejong](https://github.com/jessdejong)), Alex DeJong ([SinisterParadox](https://github.com/SinisterParadox)), Syed Pervaiz ([AliPervaiz](https://github.com/AliPervaiz)), Trenton ([F4llenPotAto](https://github.com/F4llenPotAto)), Sandra Nguyen ([snu12](https://github.com/snu12)), Nisreen ([pewnocolypse](https://github.com/pewnocolypse))
